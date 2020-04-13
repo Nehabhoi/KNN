@@ -121,6 +121,7 @@ def knn_with_gridSearchCV(X, y, K, T, R1, R2,test_ratio=0.2,filename='knn_with_g
     display_cols = ['param_knn__n_neighbors', "mean_test_score", "std_test_score"]
     
     print("\n== == == == == == == == KNN - GridSearchCV with K = [{},...,{}] == == == == == == == ==\n".format(R1, R2))
+    fig = plt.figure()
     plt.plot(list(range(R1, R2+1)), clf.cv_results_["mean_test_score"])
     plt.xlabel('Value of K for KNN')
     plt.ylabel('Cross-Validated Accuracy')
@@ -132,7 +133,8 @@ def knn_with_gridSearchCV(X, y, K, T, R1, R2,test_ratio=0.2,filename='knn_with_g
     best_line = { key : clf.cv_results_[key][clf.best_index_] for key in clf.cv_results_.keys() }
     print("Best accuracy: %0.2f (+/- %0.2f) when k = %.0f" %
           (best_line['mean_test_score'], best_line['std_test_score'] * 2, best_line['param_knn__n_neighbors']))
-    plt.savefig(filename)
+          
+    plt.savefig(filename,dpi=fig.dpi)
 
 if __name__ == "__main__":
     # Clean CSV - only run once to create a clean CSV file.
