@@ -55,7 +55,7 @@ def separate_data_from_label(data):
     return [X, y]    
 
 ### KNN MODELS ###
-def knn_untouched(X, y, K, test_ratio=0.2):
+def knn_untouched(X, y, K, test_ratio=0.2,filename="knn_untouched.png"):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, random_state=0, test_size=test_ratio)
     
@@ -71,9 +71,9 @@ def knn_untouched(X, y, K, test_ratio=0.2):
     
     print("Classification report: \n", classification_report(y_test, y_pred))
     print("Training accuracy: ", metrics.accuracy_score(y_test, y_pred))
-    plt.savefig('knn_untouched.png')
+    plt.savefig(filename)
 
-def knn(X, y, K, test_ratio=0.2):
+def knn(X, y, K, test_ratio=0.2,filename = 'knn.png'):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, random_state=0, test_size=test_ratio)
     
@@ -93,7 +93,7 @@ def knn(X, y, K, test_ratio=0.2):
     
     print("Classification report: \n", classification_report(y_test, y_pred))
     print("Training accuracy: ", metrics.accuracy_score(y_test, y_pred))
-    plt.savefig('knn.png')
+    plt.savefig(filename)
 
 
 def knn_with_cross_validation(X, y, K, T, test_ratio=0.2):
@@ -104,7 +104,7 @@ def knn_with_cross_validation(X, y, K, T, test_ratio=0.2):
     print("scores: ", scores)
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 
-def knn_with_gridSearchCV(X, y, K, T, R1, R2,test_ratio=0.2):
+def knn_with_gridSearchCV(X, y, K, T, R1, R2,test_ratio=0.2,filename='knn_with_gridSearchCV.png'):
     search_space = [{'knn__n_neighbors': range(R1, R2+1)}]
     
     sc = StandardScaler()
@@ -132,7 +132,7 @@ def knn_with_gridSearchCV(X, y, K, T, R1, R2,test_ratio=0.2):
     best_line = { key : clf.cv_results_[key][clf.best_index_] for key in clf.cv_results_.keys() }
     print("Best accuracy: %0.2f (+/- %0.2f) when k = %.0f" %
           (best_line['mean_test_score'], best_line['std_test_score'] * 2, best_line['param_knn__n_neighbors']))
-    plt.savefig('knn_with_gridSearchCV.png')
+    plt.savefig(filename)
 
 if __name__ == "__main__":
     # Clean CSV - only run once to create a clean CSV file.
@@ -155,15 +155,15 @@ if __name__ == "__main__":
     ## WITH FULL DATASETS ##
     # KNN Models
     [X, y] = separate_data_from_label(data)
-    knn_untouched(X, y, K=K)
+    knn_untouched(X, y, K=K,filename='knn_untouched.png')
     print()
 
-    knn(X, y, K=K)
+    knn(X, y, K=K,filename = 'knn_with_full_dataset.png')
     print()
 
     knn_with_cross_validation(X, y, K=K, T=T)
 
-    knn_with_gridSearchCV(X, y, K=K, T=T, R1=R1, R2=R2)
+    knn_with_gridSearchCV(X, y, K=K, T=T, R1=R1, R2=R2,test_ratio=0.2,filename='knn_with_gridSearchCV_with_full_dataset.png')
 
     # Remove any label with members < 2
     data = data[data.groupby('quality').quality.transform('count') >= 2].copy() 
@@ -175,11 +175,11 @@ if __name__ == "__main__":
     print("New data shape: X.shape = ", X_res.shape, "y.shape = ", y_res.shape)
 
     ## KNN ##
-    knn(X_res, y_res, K)
+    knn(X_res, y_res, K,filename = 'knn_fix_imbalance_dataset.png')
     print()
 
     ## KNN WITH CROSS VALIDATION ##
     knn_with_cross_validation(X_res, y_res, K, T)
 
     ## GridsearchCV ##
-    knn_with_gridSearchCV(X_res, y_res, K=K, T=T, R1=R1, R2=R2)
+    knn_with_gridSearchCV(X_res, y_res, K=K, T=T, R1=R1, R2=R2,test_ratio=0.2,filename='knn_with_gridSearchCV_fix_imbalance_dataset.png')
