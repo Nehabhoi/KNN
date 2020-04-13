@@ -158,6 +158,7 @@ if __name__ == "__main__":
 
     ###### KEEP UNBALANCED DATASET WITH SCALING ######
     [X, y] = separate_data_from_label(data)
+    knn_untouched(X, y, K=K)
     knn(X, y, K=K)
     knn_with_cross_validation(X, y, K=K, T=T)
     knn_with_gridSearchCV(X, y, K=K, T=T, R1=R1, R2=R2)
