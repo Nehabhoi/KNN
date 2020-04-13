@@ -72,6 +72,7 @@ def knn_untouched(X, y, K, test_ratio=0.2,filename="knn_untouched.png"):
     print("Classification report: \n", classification_report(y_test, y_pred))
     print("Training accuracy: ", metrics.accuracy_score(y_test, y_pred))
     plt.savefig(filename)
+    plt.clf()
 
 def knn(X, y, K, test_ratio=0.2,filename = 'knn.png'):
     X_train, X_test, y_train, y_test = train_test_split(
@@ -94,6 +95,7 @@ def knn(X, y, K, test_ratio=0.2,filename = 'knn.png'):
     print("Classification report: \n", classification_report(y_test, y_pred))
     print("Training accuracy: ", metrics.accuracy_score(y_test, y_pred))
     plt.savefig(filename)
+    plt.clf()
 
 
 def knn_with_cross_validation(X, y, K, T, test_ratio=0.2):
@@ -135,6 +137,7 @@ def knn_with_gridSearchCV(X, y, K, T, R1, R2,test_ratio=0.2,filename='knn_with_g
           (best_line['mean_test_score'], best_line['std_test_score'] * 2, best_line['param_knn__n_neighbors']))
           
     plt.savefig(filename,dpi=fig.dpi)
+    plt.clf()
 
 if __name__ == "__main__":
     # Clean CSV - only run once to create a clean CSV file.
