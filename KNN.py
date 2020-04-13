@@ -68,7 +68,7 @@ def knn(X, y, K, test_ratio=0.2):
     y_pred = model.predict(X_test_scaled)
 
     print("Result of KNN WITH PREPROCESSING using K={} is: \n".format(K))
-    labels = [0, 3, 4, 5, 6, 7, 8, 9, 11]
+    labels = np.unique(y)
     cm = confusion_matrix(y_test, y_pred, labels)
     print("Confusion Matrix: \n", cm)
     sns.heatmap(cm, annot=True, fmt='d',
@@ -86,8 +86,8 @@ def knn_untouched(X, y, K, test_ratio=0.2):
     knn.fit(X_train, y_train)
     y_pred = knn.predict(X_test)
 
-    print("Result of KNN with NO PREPROCESSING using K={} is: \n".format(K))
-    labels = [0, 3, 4, 5, 6, 7, 8, 9, 11]
+    print("=========== Result of KNN with NO PREPROCESSING using K={} is: ===========\n".format(K))
+    labels = np.unique(y)
     cm = confusion_matrix(y_test, y_pred, labels)
     print("Confusion Matrix: \n", cm)
     sns.heatmap(cm, annot=True, fmt='d',
@@ -101,7 +101,7 @@ def knn_with_cross_validation(X, y, K, T, test_ratio=0.2):
         StandardScaler(), KNeighborsClassifier(n_neighbors=K, n_jobs=-1))
     scores = cross_val_score(pipeline, X, y, cv=T)
 
-    print("\n== == == == == == == == KNN - Predefined K = {} + Cross Validation == == == == == == == ==\n".format(K))
+    print("\n=========== KNN - Predefined K = {} + Cross Validation =============\n".format(K))
     print("scores: ", scores)
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 
@@ -123,7 +123,7 @@ def knn_with_gridSearchCV(X, y, K, T, R1, R2, test_ratio=0.2):
                     "mean_test_score", "std_test_score"]
 
     print(
-        "\n== == == == == == == == KNN - GridSearchCV with K = [{},...,{}] == == == == == == == ==\n".format(R1, R2))
+        "\n=========== KNN - GridSearchCV with K = [{},...,{}] ===========\n".format(R1, R2))
     plt.plot(list(range(R1, R2+1)), clf.cv_results_["mean_test_score"])
     plt.xlabel('Value of K for KNN')
     plt.ylabel('Cross-Validated Accuracy')
