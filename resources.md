@@ -8,3 +8,8 @@
 - [Optimal Tuning Parameters](https://www.ritchieng.com/machine-learning-efficiently-search-tuning-param/)
 - [grid_search_tuning.py](https://gist.github.com/sawansaurabh/3748a083ffdec38aacb8f43660a5f654)
 - [Python: Removing Rows on Count condition](https://stackoverflow.com/questions/49735683/python-removing-rows-on-count-condition)
+- [Optimal Tuning Parameters](https://www.ritchieng.com/machine-learning-efficiently-search-tuning-param/)
+- [How to use nearest neighbours for Classification?](https://www.dezyre.com/recipes/use-nearest-neighbours-for-classification)
+- [Identifying Best Value Of k](https://chrisalbon.com/machine_learning/nearest_neighbors/identifying_best_value_of_k/)
+- [K nearest neighbour for classification on Breast Cancer Data , results with Preprocessing and w/o normalising](https://medium.com/@madanflies/k-nearest-neighbour-for-classification-on-breast-cancer-data-results-with-preprocessing-and-w-o-e21b0cc98a2f) -[Preprocessing with sklearn: a complete and comprehensive guide](https://towardsdatascience.com/preprocessing-with-sklearn-a-complete-and-comprehensive-guide-670cb98fcfb9) -[Confusion Matrix Visualization](https://medium.com/@dtuk81/confusion-matrix-visualization-fc31e3f30fea) -[Example of Confusion Matrix in Python](https://datatofish.com/confusion-matrix-python/)
+- [Preprocessing: scaling in practice](https://www.datacamp.com/community/tutorials/preprocessing-in-data-science-part-1-centering-scaling-and-knn) -[Unbalanced Datasets & What To Do About Them](https://medium.com/strands-tech-corner/unbalanced-datasets-what-to-do-144e0552d9cd)
