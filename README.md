@@ -15,7 +15,7 @@
 
 ## About The Project
 
-This project create a classifier using K Nearest Neighbours.
+This project create a classifier using K Nearest Neighbours. <br />
 It Does following things:
 - Build and train the kNN model.
 - Test kNN Model.
